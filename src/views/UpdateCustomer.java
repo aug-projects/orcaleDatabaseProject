@@ -18,7 +18,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
     public UpdateCustomer(Customer customer, UpdateCustomerActionListener updateCustomerActionListener) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.updateCustomerActionListener = updateCustomerActionListener;
         this.jTextField5.setText("" + customer.getId());
         this.jTextField6.setText("" + customer.getName());
         this.jTextField7.setText("" + customer.getAddress());
@@ -184,7 +183,7 @@ public class UpdateCustomer extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void buttonNewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewCustomerActionPerformed
         try {
