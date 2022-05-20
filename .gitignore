@@ -1,4 +1,4 @@
-/dist/
-.idea/
-/out/
-/build/*
+/dist
+.idea
+/out
+/build
