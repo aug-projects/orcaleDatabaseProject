@@ -14,13 +14,23 @@ public class Customer {
     private ArrayList<Product> cart;
     private ArrayList<Product> myFavourite;
 
+    public Customer() {}
 
-    public Customer(String name, String username, String password, String address) {
+    public Customer(String id, String name, String username, String password, String address) {
+        this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
         this.address = address;
     }
+
+    public Customer(String id, String name, String username, String address) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.address = address;
+    }
+
 
     public String getId() {
         return id;
@@ -76,5 +86,10 @@ public class Customer {
 
     public void setMyFavourite(ArrayList<Product> myFavourite) {
         this.myFavourite = myFavourite;
+    }
+
+    @Override
+    public String toString() {
+        return name + " , " + username;
     }
 }
