@@ -1,7 +1,7 @@
 
 package controllers.viewsControllers;
 
-import database.DAO;
+import dao.DAO;
 
 
 public class CartWindowController {
