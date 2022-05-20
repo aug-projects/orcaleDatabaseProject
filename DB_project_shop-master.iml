@@ -8,6 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="AbsoluteLayout-RELEASE130" level="project" />
     <orderEntry type="library" name="ojdbc8" level="project" />
+    <orderEntry type="library" name="javax.annotation-api-1.3.2" level="project" />
+    <orderEntry type="library" name="beansbinding-1.2.1" level="project" />
   </component>
 </module>
