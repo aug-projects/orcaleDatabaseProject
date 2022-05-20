@@ -1,11 +1,11 @@
 package views;
 
-import helpers.ConstantHelper;
 import controllers.interfaceListeners.InsertNewCustomerActionListener;
-
-import javax.swing.JOptionPane;
-
+import dao.CustomerDAO;
+import helpers.ConstantHelper;
 import model.Customer;
+
+import javax.swing.*;
 
 
 public class AddNewCustomer extends javax.swing.JFrame {
@@ -208,32 +208,22 @@ public class AddNewCustomer extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-            if (!(jTextField6.getText().equals("") || jTextField7.getText().equals("")
-                    || jTextField8.getText().equals("") || jTextField5.getText().equals(""))) {
-
+            if (!(jTextField6.getText().equals("") || jTextField7.getText().equals("") || jTextField8.getText().equals(""))) {
+                // TODO ADD Customer
                 String name = jTextField6.getText();
                 String address = jTextField7.getText();
-                String user = jTextField8.getText();
-                String idCustomer = jTextField5.getText();
-                //genrate password consist five digits randomly
+                String username = jTextField8.getText();
                 String password = ConstantHelper.getNewPassword();
-                String encrptPassword = ConstantHelper.encryptPass(password);
 
-                boolean checkIDvalid = ConstantHelper.checkIDvalid(idCustomer);
+                boolean SuccessesAddedCustomer = CustomerDAO.insert(new Customer("",name, username,password,address));
 
-                if (checkIDvalid) {
-                    Customer customer = new Customer(idCustomer, name, address, user, encrptPassword);
-                    boolean insertation = customerActionListener.insertNewCustomerListener(customer);
-                    if (insertation) {
-                        JOptionPane.showMessageDialog(this, "Customer adding susscefly \n YOUR password: " + password);
-                        this.dispose();
-                    } else {
-                        System.out.println("--------------------------");
-                        throw new Exception("Sorry : Customer is exists");
-                    }
-                } else {
-                    throw new Exception("Sorry : Customer'S ID invalid");
+                if (! SuccessesAddedCustomer) {
+                    throw new Exception("Sorry : Customer is exists");
                 }
+
+                JOptionPane.showMessageDialog(this, "Customer adding successfully \n YOUR password: " + password);
+                this.dispose();
+
             } else {
                 throw new Exception("Watch out !!\n" + "You can not leave behind an empty field");
             }
