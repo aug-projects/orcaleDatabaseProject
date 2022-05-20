@@ -4,43 +4,50 @@ import java.util.ArrayList;
 
 public class Department {
 
-    private String departmentID;
-    private String departmentName;
+    private String id;
+    private String name;
     private String description;
     private ArrayList<Product> listProduct;
 
-    public Department(String departmentName, String description) {
-        this.departmentName = departmentName;
+    public Department() {}
+
+    public Department(String name, String description) {
+        this.name = name;
         this.description = description;
-        this.listProduct = new ArrayList<>();
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public Department(String id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDepartmentID() {
-        return departmentID;
-    }
-
-    public void setDepartmentID(String departmentID) {
-        this.departmentID = departmentID;
-    }
-
     public ArrayList<Product> getListProduct() {
         return listProduct;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setListProduct(ArrayList<Product> listProduct) {
@@ -49,7 +56,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return departmentName;
+        return name;
     }
-
 }
