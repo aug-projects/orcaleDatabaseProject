@@ -14,7 +14,6 @@ public class DepartmentDAO {
         try {
             String sql = "INSERT INTO DEPARTMENT(NAME,DESCRIPTION) values(?,?)";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
-
             statement.setString(1, department.getName());
             statement.setString(2, department.getDescription());
 
@@ -27,22 +26,19 @@ public class DepartmentDAO {
         return false;
     }
 
-    public static boolean update(Department department) {
+    public static void update(Department department) {
         try {
             String sql = "UPDATE DEPARTMENT SET NAME=?,DESCRIPTION=? WHERE ID=?";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
-
             statement.setString(1, department.getName());
             statement.setString(2, department.getDescription());
             statement.setString(3, department.getId());
 
-            return statement.executeUpdate() > 0;
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return false;
     }
 
     public static ArrayList<Department> getDepartments() {
