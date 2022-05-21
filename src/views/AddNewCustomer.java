@@ -1,7 +1,6 @@
 package views;
 
 import controllers.interfaceListeners.InsertNewCustomerActionListener;
-import dao.CustomerDAO;
 import helpers.ConstantHelper;
 import model.Customer;
 
@@ -209,13 +208,13 @@ public class AddNewCustomer extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
             if (!(jTextField6.getText().equals("") || jTextField7.getText().equals("") || jTextField8.getText().equals(""))) {
-                // TODO ADD Customer
+                // TODO insertNewCustomerListener
                 String name = jTextField6.getText();
                 String address = jTextField7.getText();
                 String username = jTextField8.getText();
                 String password = ConstantHelper.getNewPassword();
 
-                boolean SuccessesAddedCustomer = CustomerDAO.insert(new Customer("",name, username,password,address));
+                boolean SuccessesAddedCustomer = customerActionListener.insertNewCustomerListener(new Customer("",name, username,password,address));
 
                 if (! SuccessesAddedCustomer) {
                     throw new Exception("Sorry : Customer is exists");
