@@ -11,7 +11,6 @@ public class MangerDAO {
         try {
             String sql = "SELECT ID,USERNAME,NAME FROM MANGER WHERE USERNAME=? AND PASSWORD=?";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
-
             statement.setString(1, username);
             statement.setString(2, password);
 
