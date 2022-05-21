@@ -1,15 +1,77 @@
-
 package controllers.viewsControllers;
 
-import dao.DAO;
 
+import dao.CustomerDAO;
+import dao.DepartmentDAO;
+import dao.ProductDAO;
+import model.Customer;
+import model.Department;
+import model.Product;
+
+import java.util.ArrayList;
 
 public class ManagerWindowController {
 
-    private DAO theDAO;
+/*
+|--------------------------------------------------------------------------
+| Customers
+|--------------------------------------------------------------------------
+|
+*/
 
-    public ManagerWindowController() {
-        this.theDAO = new DAO();
+    public static boolean insertCustomer(Customer customer) {
+        return CustomerDAO.insert(customer);
     }
+
+    public static void updateCustomer(Customer customer) {
+        CustomerDAO.update(customer);
+    }
+
+    public static ArrayList<Customer> getCustomers() {
+        return CustomerDAO.getCustomers();
+    }
+
+/*
+|--------------------------------------------------------------------------
+| Department
+|--------------------------------------------------------------------------
+|
+*/
+
+    public static boolean insertDepartment(Department department) {
+        return DepartmentDAO.insert(department);
+    }
+
+    public static void updateDepartment(Department department) {
+        DepartmentDAO.update(department);
+    }
+
+    public static ArrayList<Department> getDepartments() {
+        return DepartmentDAO.getDepartments();
+    }
+
+/*
+|--------------------------------------------------------------------------
+| Products
+|--------------------------------------------------------------------------
+|
+*/
+
+    public static boolean insertProduct(Product product) {
+        return ProductDAO.insert(product);
+    }
+
+    public static void updateProduct(Product product) {
+        ProductDAO.update(product);
+    }
+
+    public static ArrayList<Product> getProducts() {
+        return ProductDAO.getProducts();
+    }
+
+    public static ArrayList<Product> getProductsByDepartmentID(String departmentID) {
+        return ProductDAO.getProductsByDepartmentID(departmentID);
+    }
+
 
 }
