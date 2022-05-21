@@ -2,47 +2,75 @@ package model;
 
 public class Product {
 
+    private String id;
+    private String name;
+    private int quantity;
     private String departmentID;
-
-    private String IDProduct;
-    private String productName;
-    private double price;
-    private int quanity;
     private String description;
+    private double price;
 
-    public Product(String productName, double price, int quanity, String description) {
-        this.productName = productName;
-        this.price = price;
-        this.quanity = quanity;
+    public Product() {
+    }
+
+    public Product(String name, int quantity, String departmentID, String description, double price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.departmentID = departmentID;
         this.description = description;
+        this.price = price;
     }
 
-    public String getProductName() {
-        return productName;
+    public Product(String id, String name, int quantity, String departmentID, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.departmentID = departmentID;
+        this.description = description;
+        this.price = price;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public String getDepartmentID() {
+        return departmentID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuanity() {
-        return quanity;
-    }
-
-    public void setQuanity(int quanity) {
-        this.quanity = quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public void setDepartmentID(String departmentID) {
+        this.departmentID = departmentID;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setDescription(String description) {
@@ -50,33 +78,14 @@ public class Product {
     }
 
     @Override
-    public String toString() {
-        return productName;
-    }
-
-    public String getDepartmentID() {
-        return departmentID;
-    }
-
-    public void setDepartmentID(String departmentID) {
-        this.departmentID = departmentID;
-    }
-
-    public String getIDProduct() {
-        return IDProduct;
-    }
-
-    public void setIDProduct(String IDProduct) {
-        this.IDProduct = IDProduct;
-    }
-
-    @Override
     public Product clone() throws CloneNotSupportedException {
-        Product product = new Product(productName, price, quanity, description);
-        product.setDepartmentID(getDepartmentID());
-        product.setIDProduct(getIDProduct());
-        
+        Product product = new Product(name,quantity,departmentID, description,price);
+
         return product;
+    }
+    @Override
+    public String toString() {
+        return name;
     }
 
 }
