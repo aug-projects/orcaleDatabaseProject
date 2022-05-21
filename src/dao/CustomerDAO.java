@@ -14,7 +14,6 @@ public class CustomerDAO {
         try {
             String sql = "SELECT * FROM CUSTOMER WHERE USERNAME=? AND PASSWORD=?";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
-
             statement.setString(1, username);
             statement.setString(2, password);
 
@@ -31,7 +30,6 @@ public class CustomerDAO {
         try {
             String sql = "INSERT INTO CUSTOMER(NAME,USERNAME,PASSWORD,ADDRESS) values(?,?,?,?)";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
-
             statement.setString(1, customer.getName());
             statement.setString(2, customer.getUsername());
             statement.setString(3, customer.getPassword());
@@ -46,23 +44,21 @@ public class CustomerDAO {
         return false;
     }
 
-    public static boolean update(Customer customer) {
+    public static void update(Customer customer) {
         try {
             String sql = "UPDATE CUSTOMER SET NAME=?,USERNAME=?,ADDRESS=? WHERE ID=?";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
-
             statement.setString(1, customer.getName());
             statement.setString(2, customer.getUsername());
             statement.setString(3, customer.getAddress());
             statement.setString(4, customer.getId());
 
-            return statement.executeUpdate() > 0;
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false;
     }
 
     public static ArrayList<Customer> getCustomers() {
