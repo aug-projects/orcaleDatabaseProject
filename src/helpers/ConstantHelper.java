@@ -14,17 +14,6 @@ import java.util.Locale;
 
 public class ConstantHelper {
 
-    private static String USERNAME = "123";
-    private static String PASSWORD = "123";
-
-    public static String getUSERNAME() {
-        return USERNAME;
-    }
-
-    public static String getPASSWORD() {
-        return PASSWORD;
-    }
-
     public static void preventTypeAlphabete(KeyEvent evt) {
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
