@@ -1,14 +1,9 @@
 package views;
 
 import controllers.interfaceListeners.InsertNewDepartmentActionListener;
-
-import javax.swing.JOptionPane;
-
-import dao.CustomerDAO;
-import dao.DepartmentDAO;
-import helpers.ConstantHelper;
-import model.Customer;
 import model.Department;
+
+import javax.swing.*;
 
 
 public class AddNewDepartment extends javax.swing.JFrame {
@@ -171,18 +166,18 @@ public class AddNewDepartment extends javax.swing.JFrame {
     private void buttonAddDerpatmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddDerpatmentActionPerformed
         try {
             if (!(textNameDerpartment.getText().equals("") || textDescriptionDerpartment.getText().equals(""))) {
-
+                 // TODO insertNewDepartmentListener
                 String title = textNameDerpartment.getText();
                 String description = textDescriptionDerpartment.getText();
                 Department department = new Department(title, description);
 
-                boolean SuccessesAddedDepartment = DepartmentDAO.insert(department);
+                boolean SuccessesAddedDepartment =  insertNewDepartmentActionListener.insertNewDepartmentListener(department);
 
-                if (! SuccessesAddedDepartment) {
+                if (! SuccessesAddedDepartment ) {
                     throw new Exception("Sorry : Added Department Fail !!!");
                 }
 
-                JOptionPane.showMessageDialog(this, "Added Department successfully ");
+                JOptionPane.showMessageDialog(this, "Added Department successfully.");
 
             } else {
                 throw new Exception("Watch out !!\n" + "You can not leave behind an empty field");
