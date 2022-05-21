@@ -189,6 +189,7 @@ public class CustomerLogin extends javax.swing.JFrame {
 
         //TODO Login customer
         if (!CustomerDAO.login(username,password)) {
+
             JOptionPane.showMessageDialog(this, "Login is denied \n incorrect password or username", "Watch out !!", JOptionPane.ERROR_MESSAGE);
         }
     }
