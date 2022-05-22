@@ -10,20 +10,30 @@ import java.util.ArrayList;
 
 public class CustomerDAO {
 
-    public static boolean login(String username , String password) {
+    public static Customer login(String username, String password) {
         try {
             String sql = "SELECT * FROM CUSTOMER WHERE USERNAME=? AND PASSWORD=?";
             PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
+            ResultSet result = statement.executeQuery();
+            Customer loginCustomer = new Customer();
 
-            return statement.executeUpdate() > 0;
+            if (result.next()) {
+                System.out.println(result.getString("USERNAME"));
+                loginCustomer.setId(result.getString("ID"));
+                loginCustomer.setName(result.getString("NAME"));
+                loginCustomer.setUsername(result.getString("USERNAME"));
+                loginCustomer.setAddress(result.getString("ADDRESS"));
+            }
+
+            return loginCustomer;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
     public static boolean insert(Customer customer) {
