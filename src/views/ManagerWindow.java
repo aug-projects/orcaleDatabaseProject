@@ -635,7 +635,6 @@ public class ManagerWindow extends javax.swing.JFrame {
                 updateDepartmrnt = new UpdateDepartmrnt(listDepartment.getSelectedValue(), new UpdateDepartmentActionListener() {
                     @Override
                     public void updateDepartmentListener(Department department) {
-                        // TODO updateDepartment controller
                         ManagerWindowController.updateDepartment(department);
                         addInListDepartment();
                     }
@@ -650,7 +649,6 @@ public class ManagerWindow extends javax.swing.JFrame {
             newDepartment = new AddNewDepartment(new InsertNewDepartmentActionListener() {
                 @Override
                 public boolean insertNewDepartmentListener(Department department) {
-                    // TODO insertDepartment Controller
                     if (ManagerWindowController.insertDepartment(department)) {
                         addInListDepartment();
                         return true;
@@ -667,7 +665,6 @@ public class ManagerWindow extends javax.swing.JFrame {
             addNewCustomar = new AddNewCustomer(new InsertNewCustomerActionListener() {
                 @Override
                 public boolean insertNewCustomerListener(Customer customer) {
-                    // TODO insertCustomer Controller
                     if (ManagerWindowController.insertCustomer(customer)) {
                         addInListCustomer();
                         return true;
@@ -685,7 +682,6 @@ public class ManagerWindow extends javax.swing.JFrame {
                 updateCustomer = new UpdateCustomer(jList3.getSelectedValue(), new UpdateCustomerActionListener() {
                     @Override
                     public void updateCustomerListener(Customer customer) {
-                        // TODO updateCustomer Controller
                         ManagerWindowController.updateCustomer(customer);
                         addInListCustomer();
                     }
@@ -720,7 +716,6 @@ public class ManagerWindow extends javax.swing.JFrame {
             addNewProduct = new AddNewProduct(comboBoxModel, new InsertNewProductActionListener() {
                 @Override
                 public boolean insertNewProductListener(Product product, String idDepartment) {
-                   // TODO insertProduct Controller
                     if(ManagerWindowController.insertProduct(product)){
                         addInListProduct(idDepartment);
                         return true;
@@ -787,7 +782,6 @@ public class ManagerWindow extends javax.swing.JFrame {
     public void addInListDepartment() {
         DefaultListModel<Department> model = new DefaultListModel();
 
-        // TODO get all departments
         ArrayList<Department> listDepartment = ManagerWindowController.getDepartments();
         for (Department department : listDepartment) {
             model.addElement(department);
@@ -800,8 +794,6 @@ public class ManagerWindow extends javax.swing.JFrame {
     }
 
     public void addInListCustomer() {
-        // TODO get all customer
-
         DefaultListModel<Customer> model = new DefaultListModel();
         ArrayList<Customer> listCustomers = ManagerWindowController.getCustomers();
 
@@ -834,7 +826,6 @@ public class ManagerWindow extends javax.swing.JFrame {
     }
 
     public void addInListProduct(String idDepartment) {
-        // TODO : get all product by department
         ArrayList<Product> listProducts = ManagerWindowController.getProductsByDepartmentID(idDepartment);
         DefaultListModel<Product> model = new DefaultListModel();
 

@@ -166,7 +166,6 @@ public class AddNewDepartment extends javax.swing.JFrame {
     private void buttonAddDerpatmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddDerpatmentActionPerformed
         try {
             if (!(textNameDerpartment.getText().equals("") || textDescriptionDerpartment.getText().equals(""))) {
-                 // TODO insertNewDepartmentListener
                 String title = textNameDerpartment.getText();
                 String description = textDescriptionDerpartment.getText();
                 Department department = new Department(title, description);

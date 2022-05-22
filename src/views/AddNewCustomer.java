@@ -208,7 +208,6 @@ public class AddNewCustomer extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
             if (!(jTextField6.getText().equals("") || jTextField7.getText().equals("") || jTextField8.getText().equals(""))) {
-                // TODO insertNewCustomerListener
                 String name = jTextField6.getText();
                 String address = jTextField7.getText();
                 String username = jTextField8.getText();

@@ -178,7 +178,6 @@ public class ManagerLogin extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
-            //TODO make login
             if (!MangerDAO.login(jTextField1.getText(),jPasswordField1.getText())) {
                 JOptionPane.showMessageDialog(this, "Login is denied \n incorrect password or username", "Watch out !!", JOptionPane.ERROR_MESSAGE);
             }

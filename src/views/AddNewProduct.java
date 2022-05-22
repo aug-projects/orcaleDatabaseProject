@@ -234,7 +234,6 @@ public class AddNewProduct extends javax.swing.JFrame {
                 double dprice = Double.parseDouble(price.getText());
                 int iQ = Integer.parseInt(quantiy.getText());
 
-                //TODO insertNewProductListener
                 String idDepartment = ((Department) combo.getSelectedItem()).getId();
                 Product product = new Product(name.getText(), iQ,idDepartment ,description.getText(),dprice);
 

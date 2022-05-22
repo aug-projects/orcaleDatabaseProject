@@ -535,23 +535,15 @@ public class CustomerWindow extends javax.swing.JFrame {
 
     public void reloadJTree() {
 
-        // TODO : "CustomerWindow class" make query to get All Department in shop and make it as ArrayList<Department>
-        // query must be method created in DAO class
-        // call Functions from controllers "the controller define above"
-        ArrayList<Department> listDepartment = null;// this object of ArrayList<Department> contains Department class
-
-        // TODO : "CustomerWindow class" make query to get list of product for specific Department (idDepartment)
-        //in shop and make it as Department 
-        // query must be method created in DAO class
-        // call Functions from controllers "the controller define above"
-        // this object of Department contains ArrayList<Product>  
-        ArrayList<Product> productsList = null;
-
+        ArrayList<Department> listDepartment = CustomerWindowController.getDepartments();// this object of ArrayList<Department> contains Department class
         DefaultMutableTreeNode nodeDer = new DefaultMutableTreeNode("Shop");
 
         for (Department department : listDepartment) {
+
+            ArrayList<Product> productsList = CustomerWindowController.getProductsByDepartmentID(department.getId());
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(department);
             DefaultListModel<Product> model = new DefaultListModel();
+
             for (Product product : productsList) {
                 node.add(new DefaultMutableTreeNode(product));
             }
