@@ -3,7 +3,7 @@ package controllers.viewsControllers;
 
 
 import dao.CustomerDAO;
-import model.Customer;
+import models.Customer;
 
 public class CustomerLoginController {
 
