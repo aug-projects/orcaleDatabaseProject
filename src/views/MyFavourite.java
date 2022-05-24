@@ -1,7 +1,7 @@
 package views;
 
 import controllers.viewsControllers.CustomerWindowController;
-import model.Product;
+import models.Product;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -12,11 +12,9 @@ public class MyFavourite extends javax.swing.JFrame {
     /**
      * Creates new form MyFavourite
      */
-    private CustomerWindowController customerWindowController;
     private boolean isDisposed = false;
     public MyFavourite(String customerId) {
         initComponents();
-        customerWindowController = new CustomerWindowController();
         reshList(customerId);
     }
 
@@ -121,14 +119,7 @@ public class MyFavourite extends javax.swing.JFrame {
 
     public void reshList(String customerId) {
         DefaultListModel<Product> model = new DefaultListModel();
-
-        /* TODO : "MyFavourite class" make query to get Customar's Favourite List of product 
-              
-                make function in class DAO 
-                this method do query in database and return ArrayList<Product>   
-        // call Functions from controllers "the controller define above"
-         */
-        ArrayList<Product> listOfProduct = null; // using customerId 
+        ArrayList<Product> listOfProduct = CustomerWindowController.getFavouritesByProductId(customerId);
 
         for (Product p : listOfProduct) {
             model.addElement(p);
