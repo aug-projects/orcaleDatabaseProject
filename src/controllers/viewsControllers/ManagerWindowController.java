@@ -3,10 +3,12 @@ package controllers.viewsControllers;
 
 import dao.CustomerDAO;
 import dao.DepartmentDAO;
+import dao.LogsDAO;
 import dao.ProductDAO;
-import model.Customer;
-import model.Department;
-import model.Product;
+import models.Customer;
+import models.Department;
+import models.Log;
+import models.Product;
 
 import java.util.ArrayList;
 
@@ -72,6 +74,17 @@ public class ManagerWindowController {
     public static ArrayList<Product> getProductsByDepartmentID(String departmentID) {
         return ProductDAO.getProductsByDepartmentID(departmentID);
     }
+
+/*
+|--------------------------------------------------------------------------
+| Log
+|--------------------------------------------------------------------------
+|
+*/
+
+public static boolean insertLogs(Log logs) {
+    return LogsDAO.insert(logs);
+}
 
 
 }
