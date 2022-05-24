@@ -2,12 +2,22 @@
 package controllers.viewsControllers;
 
 
+import dao.LogsDAO;
+import models.Log;
 
 public class MainWindowController {
 
 
-    public MainWindowController() {
+/*
+|--------------------------------------------------------------------------
+| Log
+|--------------------------------------------------------------------------
+|
+*/
 
+    public static boolean insertLogs(Log logs) {
+        return LogsDAO.insert(logs);
     }
+
 
 }
