@@ -1,6 +1,6 @@
 package views;
 
-import model.Product;
+import models.Product;
 
 
 

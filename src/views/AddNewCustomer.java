@@ -2,7 +2,7 @@ package views;
 
 import controllers.interfaceListeners.InsertNewCustomerActionListener;
 import helpers.ConstantHelper;
-import model.Customer;
+import models.Customer;
 
 import javax.swing.*;
 

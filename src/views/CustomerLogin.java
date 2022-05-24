@@ -2,7 +2,7 @@ package views;
 
 import controllers.interfaceListeners.IdentifierCustomerListener;
 import controllers.viewsControllers.CustomerLoginController;
-import model.Customer;
+import models.Customer;
 
 import javax.swing.*;
 

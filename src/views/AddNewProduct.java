@@ -2,8 +2,8 @@ package views;
 
 import controllers.interfaceListeners.InsertNewProductActionListener;
 import helpers.ConstantHelper;
-import model.Department;
-import model.Product;
+import models.Department;
+import models.Product;
 
 import javax.swing.*;
 

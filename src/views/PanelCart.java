@@ -1,7 +1,7 @@
 package views;
 
 import controllers.interfaceListeners.RemoveProductActionListener;
-import model.Product;
+import models.Product;
 
 
 public class PanelCart extends javax.swing.JPanel {

@@ -1,7 +1,7 @@
 package views;
 
 import controllers.interfaceListeners.InsertNewDepartmentActionListener;
-import model.Department;
+import models.Department;
 
 import javax.swing.*;
 

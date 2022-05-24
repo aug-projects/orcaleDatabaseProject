@@ -1,7 +1,7 @@
 package views;
 
 import controllers.interfaceListeners.UpdateCustomerActionListener;
-import model.Customer;
+import models.Customer;
 
 import javax.swing.*;
 
