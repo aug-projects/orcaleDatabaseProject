@@ -4,6 +4,7 @@ package controllers.viewsControllers;
 
 import dao.CartDAO;
 import dao.OrderDAO;
+import dao.ProductDAO;
 import models.Order;
 import models.OrderDetails;
 
@@ -28,6 +29,7 @@ public class CartWindowController {
          CartDAO.delete(productId);
     }
 
-    public static void update(String s) {
+    public static void update(int quantity,String productID) {
+        ProductDAO.updateQuantity(quantity,productID);
     }
 }
