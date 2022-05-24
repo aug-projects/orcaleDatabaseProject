@@ -1,7 +1,7 @@
 
 package controllers.interfaceListeners;
 
-import model.Customer;
+import models.Customer;
 
 
 public interface InsertNewCustomerActionListener {

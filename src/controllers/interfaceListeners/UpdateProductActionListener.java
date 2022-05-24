@@ -1,7 +1,7 @@
 
 package controllers.interfaceListeners;
 
-import model.Product;
+import models.Product;
 
 
 public interface UpdateProductActionListener {

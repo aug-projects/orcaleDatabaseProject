@@ -1,7 +1,7 @@
 
 package controllers.interfaceListeners;
 
-import model.Department;
+import models.Department;
 
 
 public interface UpdateDepartmentActionListener {
