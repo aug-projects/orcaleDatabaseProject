@@ -2,11 +2,11 @@ package views;
 
 import controllers.interfaceListeners.ConfirmOrderActionListener;
 import controllers.viewsControllers.CartCheckoutWindowController;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import models.Product;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import model.Product;
 
 
 public class CartCheckoutWindow extends javax.swing.JFrame {
@@ -314,11 +314,7 @@ public class CartCheckoutWindow extends javax.swing.JFrame {
         jPanel2.validate();
         jPanel2.repaint();
 
-        // TODO : "CartCheckoutWindow class" make query to get cart of customar using Customer id
-        // query must be method created in DAO class
-        // this object of Department contains ArrayList<Product>  
-        // call Functions from controllers "the controller define above"
-        ArrayList<Product> arrayList = null;
+        ArrayList<Product> arrayList = CartCheckoutWindowController.getCarBytCustomerId(this.customarID);
 
         int counter = 0;
         for (Product product : arrayList) {
@@ -331,9 +327,11 @@ public class CartCheckoutWindow extends javax.swing.JFrame {
             counter++;
         }
 
-        // TODO : "CartCheckoutWindow class" make query to get Sum prices of product cart customar using Customer id
-        // query must be method created in DAO class
-        double sum = 0; // 
+
+        double sum =0;
+        for (Product p: arrayList) {
+            sum += p.getPrice();
+        }
         jLabel15.setText("" + sum + " $");
 
         jLabel17.setText("" + counter);
