@@ -1,7 +1,7 @@
 package dao;
 
 import database.DatabaseConnection;
-import model.Product;
+import models.Product;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +47,20 @@ public class ProductDAO {
         }
 
         return false;
+    }
+
+    public static void updateQuantity(int quantity,String productID) {
+        try {
+            String sql = "UPDATE PRODUCT SET QUANTITY=? WHERE ID=?";
+            PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql);
+            statement.setString(1, String.valueOf(quantity));
+            statement.setString(2, productID);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<Product> getProductsByDepartmentID(String departmentID) {
