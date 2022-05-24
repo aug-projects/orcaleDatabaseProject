@@ -2,9 +2,7 @@ package views;
 
 import controllers.viewsControllers.CustomerWindowController;
 import helpers.ConstantHelper;
-import model.Customer;
-import model.Department;
-import model.Product;
+import models.*;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -21,7 +19,6 @@ public class CustomerWindow extends javax.swing.JFrame {
     private Icon favIcon = null;
     private Icon UnFavIcon = null;
     private Customer customer = null;
-    private CustomerWindowController customerWindowController = null;
     private CartWindow cartWindow = null;
     private MyFavourite myFavourite = null;
     private boolean isDisposed = false;
@@ -31,7 +28,8 @@ public class CustomerWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         reloadJTree();
         this.customer = customer;
-        customerWindowController = new CustomerWindowController();
+        this.myFavourite = (new MyFavourite(customer.getId()));
+        this.cartWindow = (new CartWindow(customer.getId()));
         String[] setupGreeting = ConstantHelper.setupGreeting(customer.getName());
         jLabel1.setText(setupGreeting[0]);//set Date
         jLabel8.setText(setupGreeting[1]);//set Name
@@ -411,7 +409,7 @@ public class CustomerWindow extends javax.swing.JFrame {
             DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
             if (treeNode.isLeaf()) {
                 Product p = (Product) treeNode.getUserObject();
-                boolean check = checkProductInMyFavourite(p.getName());
+                boolean check = checkProductInMyFavourite(p.getId());
                 if (check) {
                     this.jButton1.setIcon(favIcon);
                 } else {
@@ -490,9 +488,9 @@ public class CustomerWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO : "CustomerWindow class" Make query to register logout time as Customer
-        // query must be method created in DAO class
-        // call Functions from controllers "the controller define above"
+
+        Log logs = new Log("Customer", customer.getId(), "logout");
+        CustomerWindowController.insertLogs(logs);
 
         //don't remove this
         if ((myFavourite == null || myFavourite.disposed())
@@ -563,48 +561,31 @@ public class CustomerWindow extends javax.swing.JFrame {
         p.setPrice(d);
         p.setQuantity((Integer) jComboBox1.getSelectedItem());
 
-        // TODO : "CustomerWindow class" check if product esixts in customar's cart then you will update product info not inerst new Prodect
-        // call Functions from controllers "the controller define above"
-
-        /* if () {
-            // TODO : "CustomerWindow class" insert Prodcut to customar's cart using (id) customer object
-            // query must be method created in DAO class
+        String cartId = CustomerWindowController.getCartCustomerByProduct(product.getId(),customer.getId());
+        Cart cart = new Cart(cartId,product.getId(),p.getQuantity(),customer.getId());
+        if (cartId == null) {
+            CustomerWindowController.insertCart(cart);
         } else {
-            // TODO : "CustomerWindow class" update Prodcut to customar's cart using (id) customer object
-            // query must be method created in DAO class
-        }*/
+            CustomerWindowController.updateCart(cart);
+        }
+
     }
 
     public void addInMyFavourite(Product product) throws CloneNotSupportedException {
-        Product p = product;
-        // TODO : "CustomerWindow class" insert Prodcut to customar's MyFavourite list using (id) customer object
-        // query must be method created in DAO class
-        // call Functions from controllers "the controller define above"
-
+        System.out.println("insert : " + product.getId() + " cs id : " + customer.getId());
+        FavouriteProduct favouriteProduct = new FavouriteProduct(product.getId(),customer.getId());
+        CustomerWindowController.insertFavouriteProduct(favouriteProduct);
         this.jButton1.setIcon(favIcon);
     }
 
     public void removeFromFavourite(Product product) throws CloneNotSupportedException {
-        Product p = product;
-        // TODO : "CustomerWindow class" Delete Prodcut from customar's MyFavourite list using (id) customer object
-        // query must be method created in DAO class
-        // call Functions from controllers "the controller define above"
-
+        System.out.println("delete : " + product.getId());
+        CustomerWindowController.deleteFavouriteProduct(product.getId());
         this.jButton1.setIcon(UnFavIcon);
     }
 
     public boolean checkProductInMyFavourite(String productID) {
-
-        /* TODO : "CustomerWindow class" make query to check productID in Customar's Favourite List of product or not
-                make function in class DAO 
-                this method do query in database and return ArrayList<Product>    
-                                // call Functions from controllers "the controller define above"
-
-         */
-        boolean exists = true; // return value from query
-
-        return exists ? true : false;
-
+        return CustomerWindowController.getFavouriteByProductId(productID);
     }
 
     @Override
