@@ -50,10 +50,13 @@ public class ProductDAO {
     }
 
     public static void updateQuantity(int quantity,String productID) {
+
+        int originQuantity = getProductQuantity(productID);
+
         try {
             String sql = "UPDATE PRODUCT SET QUANTITY=? WHERE ID=?";
             PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql);
-            statement.setString(1, String.valueOf(quantity));
+            statement.setString(1, String.valueOf(Math.abs(originQuantity-quantity)));
             statement.setString(2, productID);
 
             statement.executeUpdate();
@@ -116,5 +119,25 @@ public class ProductDAO {
         }
 
         return null;
+    }
+
+    public static int getProductQuantity(String productId) {
+        try {
+            String sql = "SELECT QUANTITY FROM PRODUCT where id=?";
+            PreparedStatement statement  = DatabaseConnection.getConnection().prepareStatement(sql);
+            statement.setString(1, productId);
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                return result.getInt("QUANTITY");
+            }
+
+            return 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 }
