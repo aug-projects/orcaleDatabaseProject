@@ -2,9 +2,10 @@ package views;
 
 import controllers.interfaceListeners.*;
 import controllers.viewsControllers.ManagerWindowController;
-import model.Customer;
-import model.Department;
-import model.Product;
+import models.Customer;
+import models.Department;
+import models.Log;
+import models.Product;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -764,7 +765,10 @@ public class ManagerWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jList3ValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO register logout time
+
+        Log logs = new Log("Manger","1","logout");
+        ManagerWindowController.insertLogs(logs);
+
         if ((newDepartment == null || newDepartment.disposed())
                 && (updateDepartmrnt == null || updateDepartmrnt.disposed())
                 && (updateProduct == null || updateProduct.disposed())
