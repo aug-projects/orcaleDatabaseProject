@@ -11,6 +11,7 @@ import models.Product;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class CartWindow extends javax.swing.JFrame {
@@ -20,6 +21,8 @@ public class CartWindow extends javax.swing.JFrame {
     private String customarID;
     private CartCheckoutWindow checkoutWindow;
     private boolean isDisposed = false;
+    ArrayList<Product> products = null;
+
 
     public CartWindow(String customerID) {
         initComponents();
@@ -168,16 +171,19 @@ public class CartWindow extends javax.swing.JFrame {
                     // TODO : "CartWindow class" clear customer's cart
                     // call Functions from controllers "the controller define above"
 
-                    Order order = new Order();
-                    OrderDetails orderDetails = new OrderDetails();
+                    UUID  id = UUID.randomUUID();
 
+                    Order order = new Order(String.valueOf(id),customarID,address,"",1000);
                     CartWindowController.insertOrder(order);
-                    CartWindowController.insertOrderDetails(orderDetails);
-                    CartWindowController.update("");
-                    CartWindowController.clear("");
+
+                    for (Product product : products) {
+                        OrderDetails orderDetails = new OrderDetails(String.valueOf(id),product.getId(),product.getPrice(),product.getQuantity());
+                        CartWindowController.insertOrderDetails(orderDetails);
+                        CartWindowController.update(product.getQuantity(),product.getId());
+                        CartWindowController.clear(product.getId());
+                    }
 
                     JOptionPane.showMessageDialog(CartWindow.this, "Your order id submit successfully \n Thank you !!");
-
                     CartWindow.this.dispose();
 
                 }
@@ -208,18 +214,15 @@ public class CartWindow extends javax.swing.JFrame {
         jPanel1.validate();
         jPanel1.repaint();
 
-        ArrayList<Product> arrayList = CartCheckoutWindowController.getCarBytCustomerId(customarID);
+        products = CartCheckoutWindowController.getCarBytCustomerId(customarID);
 
         int counter = 0;
-        for (Product product : arrayList) {
+        for (Product product : products) {
             panelCart = new PanelCart(product, new RemoveProductActionListener() {
                 @Override
                 public void removeProductListener(Product product) {
-                    // TODO : "CartWindow class" make query to remove product from customar's cart
-                    // query must be method created in DAO class
-                    // call Functions from controllers "the controller define above"
-
-                    getCart();// reload cart
+                    CartWindowController.clear(product.getId());
+                    getCart();
                 }
             });
 
@@ -234,7 +237,7 @@ public class CartWindow extends javax.swing.JFrame {
         }
 
         double sum =0;
-        for (Product p: arrayList) {
+        for (Product p: products) {
             sum += p.getPrice();
         }
         jLabel19.setText("" + sum + " $");
