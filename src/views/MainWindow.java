@@ -3,7 +3,8 @@ package views;
 import controllers.interfaceListeners.IdentifierCustomerListener;
 import controllers.interfaceListeners.MyActionButtonLisenters;
 import controllers.viewsControllers.MainWindowController;
-import model.Customer;
+import models.Customer;
+import models.Log;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -231,14 +232,19 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public void loginManger() {
-        // TODO register login as Manager time
+
+        Log logs = new Log("Manger", "1", "login");
+        MainWindowController.insertLogs(logs);
+
         ManagerWindow managerWindow = new ManagerWindow();
         managerWindow.setVisible(true);
         this.dispose();
     }
 
     public void loginCustomer(Customer customer) {
-        // TODO register login as Customer time
+        Log logs = new Log("Customer", customer.getId(), "login");
+        MainWindowController.insertLogs(logs);
+
         CustomerWindow customerWindow = new CustomerWindow(customer);
         customerWindow.setVisible(true);
         this.dispose();
